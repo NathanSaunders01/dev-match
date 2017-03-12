@@ -1,6 +1,7 @@
 class ProfilesController < ApplicationController
   # Define instance variables with @ in controller and then reference them in views files
   # Must have same def/view file name for it to pick. Example def new and views->profiles->new
+  # Active Record Querying documentation for other examples for accessing DB
   
   # GET to /users/:user_id/profile/new
   def new
@@ -11,14 +12,18 @@ class ProfilesController < ApplicationController
   
   # POST to /users/:user_id/profile
   def create
-    # Ensure that we have the user who is filling form
+    # Ensure that we have the user who is filling form by finding ID in URL for user
     @user = User.find( params[:user_id] )
-    # Create profile linked to this specific user
+    # Create profile linked to this specific user. Check profile_params in function below
+    # See build_"association" in Active Record Association documentation for more examples
     @profile = @user.build_profile( profile_params )
+    # EXAMPLE: @profile = @user.images.build(). See profile model for "has_many"
     if @profile.save
       flash[:success] = "Profile updated!"
       redirect_to root_path
     else 
+      # render isn't another request/GET, it returns original page
+      # Rails render layouts documentation for explanation
       render action: :new
     end
   end
