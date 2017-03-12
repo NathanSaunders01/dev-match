@@ -2,7 +2,7 @@ Rails.application.routes.draw do
     root to: 'pages#home'
     devise_for :users, controllers: { registrations: 'users/registrations' }
     resources :users do
-        # Singular profile because only one profile per user
+        # Singular resource and profile because requiring only one resource and profile per user
        resource :profile 
     end
     get 'about', to: 'pages#about'
@@ -10,4 +10,5 @@ Rails.application.routes.draw do
     get 'contact-us', to: 'contacts#new', as: 'new_contact'
     
     # Nested Resources Documentation
+    
 end

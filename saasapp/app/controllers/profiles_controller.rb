@@ -3,6 +3,10 @@ class ProfilesController < ApplicationController
   # Must have same def/view file name for it to pick. Example def new and views->profiles->new
   # Active Record Querying documentation for other examples for accessing DB
   
+  # Use rails routes in console to find what URL path should be used and 
+  # what dynamic ids need to be included. Use params in relevant controller file
+  # to include the paramater.
+
   # GET to /users/:user_id/profile/new
   def new
     # Render blank profile details form
@@ -20,7 +24,7 @@ class ProfilesController < ApplicationController
     # EXAMPLE: @profile = @user.images.build(). See profile model for "has_many"
     if @profile.save
       flash[:success] = "Profile updated!"
-      redirect_to root_path
+      redirect_to user_path( params[:user_id] )
     else 
       # render isn't another request/GET, it returns original page
       # Rails render layouts documentation for explanation
