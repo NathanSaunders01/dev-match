@@ -1,4 +1,8 @@
 class ProfilesController < ApplicationController
+  before_action :authenticate_user!
+  before_action :only_current_user
+  # Limit before_action to certain functions by adding , only [:new, :edit]
+  
   # Define instance variables with @ in controller and then reference them in views files
   # Must have same def/view file name for it to pick. Example def new and views->profiles->new
   # Active Record Querying documentation for other examples for accessing DB
@@ -57,5 +61,10 @@ class ProfilesController < ApplicationController
   private 
     def profile_params
       params.require(:profile).permit(:first_name, :last_name, :avatar, :job_title, :phone_number, :contact_email, :description)
+    end
+    
+    def only_current_user
+      @user = User.find( params[:user_id] )
+      redirect_to(root_url) unless @user == current_user
     end
 end
