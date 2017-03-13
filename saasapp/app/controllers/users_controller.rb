@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   
   
   def index
-    
+    @users = User.includes(:profile)
   end
   
     # Use rails routes in console to find what URL path should be used and 
