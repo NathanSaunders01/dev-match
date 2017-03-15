@@ -1,0 +1,51 @@
+<div>
+  <h1 class="text-center">The Leaderboards</h1></br>
+  <p class="text-center">Check how you compare to others in the community.</p></br>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div>
+        <table class="table">
+          <tr>
+            <th class="league-header" colspan="6">Last Man Standing</th>
+          </tr>
+          <tr class="row-header">
+            <th class="left-column">Name</td>
+            <th class="other-column">Job Title</td>
+            <th class="other-column">Last Logged In</td>
+          </tr>
+          <% @users.each do |user| %>
+            <tr class="tr">
+              <td class="left-column"><%= image_tag user.profile.avatar.url, class: 'sml-avatar-show-img' %>   <%= user.profile.first_name %> <%= user.profile.last_name %></td>
+              <td class="other-column"><%= user.profile.job_title %></td>
+              <td class="other-column"><%= user.last_sign_in_at.strftime("%d/%m/%Y") %></td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div>
+        <table class="table">
+          <tr>
+            <th class="league-header" colspan="6">MVP</th>
+          </tr>
+          <tr class="row-header">
+            <th class="left-column">Name</td>
+            <th class="other-column">Job Title</td>
+            <th class="other-column">Number of Logins</td>
+          </tr>
+          <% @users.each do |user| %>
+            <tr class="tr">
+              <td class="left-column"><%= image_tag user.profile.avatar.url, class: 'sml-avatar-show-img' %>   <%= user.profile.first_name %> <%= user.profile.last_name %></td>
+              <td class="other-column"><%= user.profile.job_title %></td>
+              <td class="other-column"><%= user.sign_in_count %></td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

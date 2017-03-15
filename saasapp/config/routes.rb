@@ -3,8 +3,9 @@ Rails.application.routes.draw do
     devise_for :users, controllers: { registrations: 'users/registrations' }
     resources :users do
         # Singular resource and profile because requiring only one resource and profile per user
-       resource :profile 
+       resource :profile
     end
+    resources :leagues
     get 'about', to: 'pages#about'
     resources :contacts, only: :create
     get 'contact-us', to: 'contacts#new', as: 'new_contact'
