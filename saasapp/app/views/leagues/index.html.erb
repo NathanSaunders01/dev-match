@@ -7,20 +7,20 @@
   <div class="row">
     <div class="col-md-6">
       <div>
-        <table class="table">
+        <table class="table" cellpadding="100">
           <tr>
             <th class="league-header" colspan="6">Last Man Standing</th>
           </tr>
           <tr class="row-header">
-            <th class="left-column">Name</td>
-            <th class="other-column">Job Title</td>
-            <th class="other-column">Last Logged In</td>
+            <th>Name</td>
+            <th class="left-column">Job Title</td>
+            <th class="left-column">Last Logged In</td>
           </tr>
-          <% @users.each do |user| %>
+          <% @LMSusers.each do |user| %>
             <tr class="tr">
               <td class="left-column"><%= image_tag user.profile.avatar.url, class: 'sml-avatar-show-img' %>   <%= user.profile.first_name %> <%= user.profile.last_name %></td>
-              <td class="other-column"><%= user.profile.job_title %></td>
-              <td class="other-column"><%= user.last_sign_in_at.strftime("%d/%m/%Y") %></td>
+              <td class="left-column"><%= user.profile.job_title %></td>
+              <td class="left-column"><%= user.last_sign_in_at.strftime("%d/%m/%Y") %></td>
             </tr>
           <% end %>
         </table>
@@ -33,15 +33,15 @@
             <th class="league-header" colspan="6">MVP</th>
           </tr>
           <tr class="row-header">
-            <th class="left-column">Name</td>
-            <th class="other-column">Job Title</td>
+            <th>Name</td>
+            <th class="left-column">Job Title</td>
             <th class="other-column">Number of Logins</td>
           </tr>
-          <% @users.each do |user| %>
+          <% @MVPusers.each do |user| %>
             <tr class="tr">
               <td class="left-column"><%= image_tag user.profile.avatar.url, class: 'sml-avatar-show-img' %>   <%= user.profile.first_name %> <%= user.profile.last_name %></td>
-              <td class="other-column"><%= user.profile.job_title %></td>
-              <td class="other-column"><%= user.sign_in_count %></td>
+              <td class="left-column"><%= user.profile.job_title %></td>
+              <td><%= user.sign_in_count %></td>
             </tr>
           <% end %>
         </table>

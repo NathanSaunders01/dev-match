@@ -1,5 +1,6 @@
-class LeaguesController < UsersController
+class LeaguesController < ApplicationController
   def index
-    @users = User.includes(:profile)
+    @LMSusers = User.all.order('last_sign_in_at DESC')
+    @MVPusers = User.all.order('sign_in_count DESC')
   end
 end
