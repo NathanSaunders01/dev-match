@@ -1,27 +1,41 @@
 <div>
-  <h1 class="text-center">The Leaderboards</h1></br>
-  <p class="text-center">Check how you compare to others in the community.</p></br>
+  <h1 class="text-center">The Leaderboard</h1></br>
+  <p class="text-center">Check how you compare to the top 5 in the community.</p></br>
 </div>
 
 <div class="container">
   <div class="row">
     <div class="col-md-6">
       <div>
-        <table class="table" cellpadding="100">
+        <table class="table">
           <tr>
             <th class="league-header" colspan="6">Last Man Standing</th>
           </tr>
           <tr class="row-header">
-            <th>Name</td>
-            <th class="left-column">Job Title</td>
-            <th class="left-column">Last Logged In</td>
+            <th>Position</th>
+            <th>Name</th>
+            <th class="left-column">Job Title</th>
+            <th class="left-column">Last Logged In</th>
           </tr>
-          <% @LMSusers.each do |user| %>
-            <tr class="tr">
-              <td class="left-column"><%= image_tag user.profile.avatar.url, class: 'sml-avatar-show-img' %>   <%= user.profile.first_name %> <%= user.profile.last_name %></td>
-              <td class="left-column"><%= user.profile.job_title %></td>
-              <td class="left-column"><%= user.last_sign_in_at.strftime("%d/%m/%Y") %></td>
-            </tr>
+          <% @LMSusers.each_with_index do |user, index| %>
+            <% if index < 5 %>
+              <tr class="tr">
+                <td style="padding-top: 20px;"><%= index+1 %></td>
+                <td class="left-column"><%= link_to user do %><%= image_tag user.profile.avatar.url, class: 'sml-avatar-show-img' %><% end %> <%= link_to user do %><%= user.profile.first_name %> <%= user.profile.last_name %><% end %></td>
+                <td style="padding-top: 20px;" class="left-column"><%= user.profile.job_title %></td>
+                <td style="padding-top: 20px;" class="left-column"><%= user.last_sign_in_at.strftime("%d/%m/%Y") %></td>
+              </tr>
+            <% end %>  
+          <% end %>
+          <% if user_signed_in? %>
+            <% if current_user.profile %>
+              <tr class="tr user-tr">
+                <td style="padding-top: 20px;" ><%= @LMSuser_position + 1 %></td>
+                <td class="left-column"><%= link_to user_path(current_user.id) do %><%= image_tag current_user.profile.avatar.url, class: 'sml-avatar-show-img' %><% end %> <%= link_to user_path(current_user.id) do %><%= current_user.profile.first_name %> <%= current_user.profile.last_name %><% end %></td>
+                <td style="padding-top: 20px;" class="left-column"><%= current_user.profile.job_title %></td>
+                <td style="padding-top: 20px;" class="left-column"><%= current_user.last_sign_in_at.strftime("%d/%m/%Y") %></td>
+              </tr>
+            <% end %>
           <% end %>
         </table>
       </div>
@@ -33,16 +47,30 @@
             <th class="league-header" colspan="6">MVP</th>
           </tr>
           <tr class="row-header">
-            <th>Name</td>
-            <th class="left-column">Job Title</td>
-            <th class="other-column">Number of Logins</td>
+            <th>Position</th>
+            <th>Name</th>
+            <th class="left-column">Job Title</th>
+            <th class="left-column">Number of Logins</th>
           </tr>
-          <% @MVPusers.each do |user| %>
-            <tr class="tr">
-              <td class="left-column"><%= image_tag user.profile.avatar.url, class: 'sml-avatar-show-img' %>   <%= user.profile.first_name %> <%= user.profile.last_name %></td>
-              <td class="left-column"><%= user.profile.job_title %></td>
-              <td><%= user.sign_in_count %></td>
-            </tr>
+          <% @MVPusers.each_with_index do |user, index| %>
+            <% if index < 5 %>
+              <tr class="tr">
+                <td style="padding-top: 20px;"><%= index + 1 %></td>
+                <td class="left-column"><%= link_to user do %><%= image_tag user.profile.avatar.url, class: 'sml-avatar-show-img' %><% end %> <%= link_to user do %><%= user.profile.first_name %> <%= user.profile.last_name %><% end %></td>
+                <td style="padding-top: 20px;" class="left-column"><%= user.profile.job_title %></td>
+                <td style="padding-top: 20px;" class="left-column"><%= user.sign_in_count %></td>
+              </tr>
+            <% end %>
+          <% end %>
+          <% if user_signed_in? %>
+            <% if current_user.profile %>
+              <tr class="tr user-tr">
+                <td style="padding-top: 20px;" ><%= @MVPuser_position + 1 %></td>
+                <td class="left-column"><%= link_to user_path(current_user.id) do %><%= image_tag current_user.profile.avatar.url, class: 'sml-avatar-show-img' %><% end %> <%= link_to user_path(current_user.id) do %><%= current_user.profile.first_name %> <%= current_user.profile.last_name %><% end %></td>
+                <td style="padding-top: 20px;" class="left-column"><%= current_user.profile.job_title %></td>
+                <td style="padding-top: 20px;" class="left-column"><%= current_user.sign_in_count %></td>
+              </tr>
+            <% end %>
           <% end %>
         </table>
       </div>

@@ -22,7 +22,7 @@
  
  // Typography Styles
  h1, h2, h3 {
-     font-family: 'Sansita', sans-serif;
+     font-family: 'Cuprum', sans-serif;
  }
 
 // Background Gradient
@@ -94,35 +94,29 @@ background: linear-gradient(to left, #4568DC , #B06AB3); /* W3C, IE 10+/ Edge, F
     }
 }
 
+.td {
+}
+
 .table {
-    border-collapse: collapse;
     border-radius: 6px;
     background: #f9f9f9;
-    text-align: center;
 }
 
 .league-header {
  text-align: center;
  background-color:#f0f0f0;
- border-top-left-radius: 0.5em;
- border-top-right-radius: 0.5em;
- border-top:none;
  font-size: 150%;
+ padding-top:10px;
+ padding-bottom:10px;
 }
 
 .row-header {
- border-color:#ccc;
- color:#333;
  background-color:#f0f0f0;
 }
 
-.left-column {
- text-align: left;
-}
+.user-tr {
+ outline: thin solid black;
+} 
 
-.other-column {
-  text-align: center;
-  align-items: center;
-}
 
 
