@@ -1,6 +1,6 @@
 <div>
   <h1 class="text-center">The Leaderboard</h1></br>
-  <p class="text-center">Check how you compare to the top 5 in the community.</p></br>
+  <p class="text-center">Check how you compare to the top 5 in the community. Users must have completed their profiles to appear in the league</p></br>
 </div>
 
 <div class="container">
@@ -20,20 +20,22 @@
           <% @LMSusers.each_with_index do |user, index| %>
             <% if index < 5 %>
               <tr class="tr">
-                <td style="padding-top: 20px;"><%= index+1 %></td>
-                <td class="left-column"><%= link_to user do %><%= image_tag user.profile.avatar.url, class: 'sml-avatar-show-img' %><% end %> <%= link_to user do %><%= user.profile.first_name %> <%= user.profile.last_name %><% end %></td>
-                <td style="padding-top: 20px;" class="left-column"><%= user.profile.job_title %></td>
-                <td style="padding-top: 20px;" class="left-column"><%= user.last_sign_in_at.strftime("%d/%m/%Y") %></td>
+                <td style="padding-top: 20px;"><%= (index + 1) if user.profile && user.profile.first_name %></td>
+                <td class="left-column"><%= link_to user do %><%= (image_tag user.profile.avatar.url, class: 'sml-avatar-show-img') if user.profile && user.profile.avatar %><% end %> 
+                  <%= link_to user do %><%= (user.profile.first_name) if user.profile && user.profile.first_name %> <%= (user.profile.last_name) if user.profile && user.profile.last_name %><% end %></td>
+                <td style="padding-top: 20px;" class="left-column"><%= (user.profile.job_title) if user.profile && user.profile.job_title %></td>
+                <td style="padding-top: 20px;"><%= (user.last_sign_in_at.strftime("%d/%m/%Y")) if user.profile && user.last_sign_in_at %></td>
               </tr>
-            <% end %>  
+            <% end %>
           <% end %>
           <% if user_signed_in? %>
             <% if current_user.profile %>
               <tr class="tr user-tr">
                 <td style="padding-top: 20px;" ><%= @LMSuser_position + 1 %></td>
-                <td class="left-column"><%= link_to user_path(current_user.id) do %><%= image_tag current_user.profile.avatar.url, class: 'sml-avatar-show-img' %><% end %> <%= link_to user_path(current_user.id) do %><%= current_user.profile.first_name %> <%= current_user.profile.last_name %><% end %></td>
-                <td style="padding-top: 20px;" class="left-column"><%= current_user.profile.job_title %></td>
-                <td style="padding-top: 20px;" class="left-column"><%= current_user.last_sign_in_at.strftime("%d/%m/%Y") %></td>
+                <td class="left-column"><%= link_to user_path(current_user.id) do %><%= (image_tag current_user.profile.avatar.url, class: 'sml-avatar-show-img') if current_user && current_user.profile && current_user.profile.avatar %><% end %> 
+                  <%= link_to user_path(current_user.id) do %><%= (current_user.profile.first_name) if current_user.profile && current_user.profile.first_name %> <%= (current_user.profile.last_name) if current_user.profile && current_user.profile.last_name %><% end %></td>
+                <td style="padding-top: 20px;" class="left-column"><%= (current_user.profile.job_title) if current_user.profile && current_user.profile.job_title %></td>
+                <td style="padding-top: 20px;"><%= (current_user.last_sign_in_at.strftime("%d/%m/%Y")) if current_user.profile && current_user.last_sign_in_at %></td>
               </tr>
             <% end %>
           <% end %>
@@ -50,15 +52,16 @@
             <th>Position</th>
             <th>Name</th>
             <th class="left-column">Job Title</th>
-            <th class="left-column">Number of Logins</th>
+            <th class="left-column" style="text-align: center;">Number of Logins</th>
           </tr>
           <% @MVPusers.each_with_index do |user, index| %>
             <% if index < 5 %>
               <tr class="tr">
                 <td style="padding-top: 20px;"><%= index + 1 %></td>
-                <td class="left-column"><%= link_to user do %><%= image_tag user.profile.avatar.url, class: 'sml-avatar-show-img' %><% end %> <%= link_to user do %><%= user.profile.first_name %> <%= user.profile.last_name %><% end %></td>
-                <td style="padding-top: 20px;" class="left-column"><%= user.profile.job_title %></td>
-                <td style="padding-top: 20px;" class="left-column"><%= user.sign_in_count %></td>
+                <td class="left-column"><%= link_to user do %><%= (image_tag user.profile.avatar.url, class: 'sml-avatar-show-img') if user.profile && user.profile.avatar %><% end %> 
+                  <%= link_to user do %><%= (user.profile.first_name) if user.profile && user.profile.first_name %> <%= (user.profile.last_name) if user.profile && user.profile.last_name %><% end %></td>
+                <td style="padding-top: 20px;" class="left-column"><%= (user.profile.job_title) if user.profile && user.profile.job_title %></td>
+                <td style="padding-top: 20px; text-align: center;"><%= (user.sign_in_count) if user.profile && user.sign_in_count %></td>
               </tr>
             <% end %>
           <% end %>
@@ -66,9 +69,10 @@
             <% if current_user.profile %>
               <tr class="tr user-tr">
                 <td style="padding-top: 20px;" ><%= @MVPuser_position + 1 %></td>
-                <td class="left-column"><%= link_to user_path(current_user.id) do %><%= image_tag current_user.profile.avatar.url, class: 'sml-avatar-show-img' %><% end %> <%= link_to user_path(current_user.id) do %><%= current_user.profile.first_name %> <%= current_user.profile.last_name %><% end %></td>
-                <td style="padding-top: 20px;" class="left-column"><%= current_user.profile.job_title %></td>
-                <td style="padding-top: 20px;" class="left-column"><%= current_user.sign_in_count %></td>
+                <td class="left-column"><%= link_to user_path(current_user.id) do %><%= (image_tag current_user.profile.avatar.url, class: 'sml-avatar-show-img') if current_user.profile && current_user.profile.avatar %><% end %> 
+                  <%= link_to user_path(current_user.id) do %><%= (current_user.profile.first_name) if current_user.profile && current_user.profile.first_name %> <%= (current_user.profile.last_name) if current_user.profile && current_user.profile.last_name %><% end %></td>
+                <td style="padding-top: 20px;" class="left-column"><%= (current_user.profile.job_title) if current_user.profile && current_user.profile.job_title %></td>
+                <td style="padding-top: 20px; text-align: center;"><%= (current_user.sign_in_count) if current_user.profile && current_user.sign_in_count %></td>
               </tr>
             <% end %>
           <% end %>
@@ -77,3 +81,4 @@
     </div>
   </div>
 </div>
+
