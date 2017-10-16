@@ -30,32 +30,3 @@ League Table
 * should only see pictures and job titles, everyone else sees picture and name
 * Table should be exportable for pro users
 
-  <% for league in @leagues%>
-    <tr>
-      <td><%= link_to league.name, league %></td>
-      <td><%= league.from_year %>-<%= league.to_year %></td>
-      <td>
-        <% if can? :new, league %>
-          <%= link_to "Delete", league, :method => :delete, :data => {:confirm => "Delete this league: #{league.name}?"},
-                      :class => "btn btn-danger",
-                      :title => "Delete #{league.name}" %>
-        <% end %>
-      </td>
-    </tr>
-  <% end%>
-  
-  <% @users.each do |user| %>
-    <% if user.profile %>
-      <tr>
-        <td><%= image_tag user.profile.avatar.url, class:'user-index-avatar' %></td>
-        <td><%= user.profile.first_name %> <%= user.profile.last_name %></td>
-        <td><%= user.last_sign_in_at %></td>
-        </tr>
-      <% end %>
-    <% end %>
-  <% end %>
-  
-  
-  
-  
-  
