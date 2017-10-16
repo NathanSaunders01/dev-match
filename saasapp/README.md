@@ -4,3 +4,4 @@
 
 Freemium business model with user authentication, image upload, payment handling and hosted on a production server.
 
+![Alt text](https://github.com/NathanSaunders01/upskill_saas_tutorial/blob/master/saasapp/app/images/homepage.jpg "logo")
