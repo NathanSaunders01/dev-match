@@ -1,3 +1,6 @@
-# README
+# devMatch
 
-[Upskill](http://upskillcourses.com) Software-as-a-Service Ruby on Rails App
+[devMatch](https://dev-match-ror.herokuapp.com/) - A community of entrepreneurs, investors and developers
+
+Freemium business model with user authentication, image upload, payment handling and hosted on a production server.
+
