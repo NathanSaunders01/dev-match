@@ -4,4 +4,4 @@
 
 Freemium business model with user authentication, image upload, payment handling and hosted on a production server.
 
-![Alt text](app/assets/images/homepage.jpg "logo")
+![Alt text](app/assets/images/devMatch_screenshots.jpg "devMatch_screenshots")
