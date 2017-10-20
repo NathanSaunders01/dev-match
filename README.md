@@ -4,7 +4,7 @@
 
 Freemium business model with user authentication, image upload, payment handling and hosted on a production server.
 
-![Alt text](app/assets/images/devMatch_screenshots.jpg "devMatch Screenshots")
+![Alt text](saasapp/app/assets/images/devMatch_screenshots.jpg "devMatch Screenshots")
 
 ### Built with:
 * Ruby 2.3.0
