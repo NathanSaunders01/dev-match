@@ -27,4 +27,4 @@ Freemium business model with user authentication, image upload, payment handling
 * It helped build my foundational understanding of the MVC pattern.
 * After completing, I took what I learnt to add my own feature, the league table. Here, I ranked users by their engagement and added a query to the controller to display the position and stats of the current user, even if they weren't in the top 5.
 
-![Alt text](app/assets/images/league_table.jpg "League table")
+![Alt text](saasapp/app/assets/images/league_table.jpg "League table")
